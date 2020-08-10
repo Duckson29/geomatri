@@ -1,0 +1,21 @@
+<div class="container">
+    <h1 class="text-Center">Geomatri Opgaves</h1>
+    <form #sideAValue="ngForm">
+      <div class="form-group">
+        <input type="number" placeholder="Side A" (input)='SetValueOnSide(sideAValue)' class="form-control" id="number"
+          required [(ngModel)]="shape.SideA" name="name" #name="ngModel">
+        <input [hidden]="selectedId != 0" type="number" (input)='SetValueOnSideB(sideAValue)' class="form-control"
+          placeholder="Side b" required [(ngModel)]="shape.SideB" name="name" #name="ngModel">
+        <input class="form-control" type="text"
+          value="Calculate Circumference : {{selectlist[selectedId].CalculateCircumference()}}" readonly>
+        <input class="form-control" type="text" value="Calculated Area: {{selectlist[selectedId].CalculateArea()}}"
+          readonly>
+      </div>
+    </form>
+    <div class="row mb-3">
+      <div class="col-4">
+        <select class="form-control" #shape (change)='SelectShape(shape.value)'>
+          <option *ngFor='let option of selectlist' [value]="option.ShapeName">{{option.ShapeName}}</option>
+        </select>
+      </div>
+    </div>
